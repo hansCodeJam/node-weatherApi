@@ -43,32 +43,32 @@ module.exports = {
         })
 }, 
  
-weatherApi: (req,res)=>{
+  weatherApi: (req,res)=>{
 
-  if(req.isAuthenticated()) {
-    
-    city = req.query
-    const apiKey = process.env.KEY;
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.city}&appid=${apiKey}&units=imperial`;
-    fetch(url).then((weather) => weather.json()).then((weather) => {
-      return res.render('weatherApp',{weather})
-    }).catch((err) => err)
-   }
-}, 
+    if(req.isAuthenticated()) {
+      
+      city = req.query
+      const apiKey = process.env.KEY;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.city}&appid=${apiKey}&units=imperial`;
+      fetch(url).then((weather) => weather.json()).then((weather) => {
+        return res.render('weatherApp',{weather})
+      }).catch((err) => err)
+    }
+  }, 
 
-home:(req,res)=>{
-  if(req.isAuthenticated()){
-    res.render('home')
-  }else{
-    res.redirect('/users/login')
-  }
-}, 
+    home:(req,res)=>{
+      if(req.isAuthenticated()){
+        res.render('home')
+      }else{
+        res.redirect('/users/login')
+      }
+    }, 
 
-logout:(req,res)=>{
-        
-  req.logOut()
-  req.flash('successMessage','you are now logged out')
-  return res.redirect('/users/login')
-}
+    logout:(req,res)=>{
+            
+      req.logOut()
+      req.flash('successMessage','you are now logged out')
+      return res.redirect('/users/login')
+    }
 
 }
