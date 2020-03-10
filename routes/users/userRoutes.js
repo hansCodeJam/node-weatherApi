@@ -7,7 +7,7 @@ const userValidation = require('../validation/userValidation');;
 router.get('/weather',userController.weatherApi)
 router.get('/',userController.home)
 router.get('/login', (req,res) => {
-    res.render('login')
+    res.render('auth/login')
 })
 
 router.post(
@@ -20,7 +20,7 @@ router.post(
 );
 
 router.get('/register', (req,res)=>{
-    res.render('register')
+    res.render('auth/register')
   })
 
 router.post('/register', userValidation, userController.register)
