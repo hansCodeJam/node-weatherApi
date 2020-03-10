@@ -47,15 +47,12 @@ weatherApi: (req,res)=>{
 
   if(req.isAuthenticated()) {
     
-    cityName = req.query
+    city = req.query
     const apiKey = process.env.KEY;
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.cityName}&appid=${apiKey}&units=imperial`;
-    fetch(url)
-    .then((weather) => weather.json())
-    .then((weather) => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.city}&appid=${apiKey}&units=imperial`;
+    fetch(url).then((weather) => weather.json()).then((weather) => {
       return res.render('weatherApp',{weather})
-    })
-    .catch((err) => err)
+    }).catch((err) => err)
    }
 }, 
 
